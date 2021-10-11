@@ -1,0 +1,20 @@
+{
+  "name": "reactapp",
+  "version": "1.0.0",
+  "description": "simply react app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/floydezus/reactapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/floydezus/reactapp/issues"
+  },
+  "homepage": "https://github.com/floydezus/reactapp#readme"
+}

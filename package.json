@@ -11,10 +11,38 @@
     "url": "git+https://github.com/floydezus/reactapp.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "alexander tokarev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/floydezus/reactapp/issues"
   },
-  "homepage": "https://github.com/floydezus/reactapp#readme"
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  },
+  "homepage": "https://github.com/floydezus/reactapp#readme",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^6.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
+  }
 }

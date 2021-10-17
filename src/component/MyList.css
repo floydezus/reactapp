@@ -4,18 +4,18 @@ body {
 }
 
 .list {
-  height: 372px;
-  /*box-shadow: 0 0 0 1px red;*/
+  height: 372px;  
   overflow-y: scroll;
   margin-top: 20px;
 }
 
 .list-item {
+  width: 97%;
   position: relative;
   text-decoration: none;
-  margin-left: 8px;
-  padding-left: 10px; 
-  border: 1px solid #0077AA;
+  margin: 10px 20px 10px 10px;
+  padding-left: 10px;  
+  box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);  
   border-radius: 8px 8px 8px 8px;
 }
 
@@ -40,9 +40,22 @@ body {
   border-radius: 8px 8px 8px 8px; 
 }
 
+h2 {
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+p {
+  font-size: 15px;
+  font-style: italic;  
+  margin-left: 8px;
+  padding-bottom: 8px;
+}
+
 a {
   color: white;
-  font-size: 16px;   
+  font-size: 16px;
+  font-style: normal;   
   color: white;
   margin-left: 10px;
 }
@@ -50,10 +63,6 @@ a {
 a[href^="tel:"]:before {
   content: "\260e";
   margin-right: 0.5em;  
-}
-
-.content {
- align-self: center;
 }
 
 .loading {
@@ -81,12 +90,16 @@ a[href^="tel:"]:before {
 }
 
 .button {
+  width: 250px;
+  font-size: medium;
   border-radius: 8px;
   background-color: #04AA6D; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
+  margin: 10px 20px 15px;
   text-align: center;
-  z-index: 1;
+  z-index: 1;  
+  box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
 }
 

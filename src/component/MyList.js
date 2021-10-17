@@ -4,17 +4,17 @@ import axios from 'axios';
 import routes from '../routes.js';
 
 const MyList = () => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState( null);
   const [fetchingStatus, setFetchingStatus] = useState('idle');
   const [error, setError] = useState(null);
-  // const [isAscending, setAscending] = useState(true);
-
+  const [isAscending, setAscending] = useState(true);  
+  
   useEffect(() => {    
     setFetchingStatus('loading');
     axios.get(routes.smallData())
       .then((response) => {
         const { data } = response;        
-        setUsers(data);
+        setUsers(data);        
         setFetchingStatus('loaded');
       })
       .catch((err) => {       
@@ -28,25 +28,17 @@ const MyList = () => {
   }, []);
 
   const sortByDate = () => {
-    const newUsers = [...users];
+    const newUsers = [...users];    
     // ascending - по возрастанию,  descending - по убыванию
-    setUsers(
-      newUsers.sort((a, b) => {
+    setUsers(      
+       newUsers.sort((a, b) => {
         const dateA = new Date(a.timestamp);
         const dateB = new Date(b.timestamp);
-        // return isAscending ? dateA - dateB : dateB - dateA;
-        return dateA - dateB;
+        return isAscending ? dateA - dateB : dateB - dateA;        
       }),
     );
-  };
-
-  const scrollToLast = () => {
-    console.log('click');
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  };
+    setAscending(!isAscending);
+  };  
 
   const getDate = (timest) => {
     const date = new Date(timest);
@@ -60,13 +52,8 @@ const MyList = () => {
 
   const renderList = () => {    
     return (
-      <div>
-        <button className="button"
-          onClick={scrollToLast}
-        >
-          To End
-        </button>
-        <button className="button" onClick={sortByDate}>Sort by:</button>
+      <div>        
+        <button className="button" onClick={sortByDate}>Sort by: {isAscending? 'Ascending' : 'Descending'}</button>        
         <div className="list">
         {users?.map(
           ({
@@ -90,28 +77,20 @@ const MyList = () => {
     );
   };
 
-  if (fetchingStatus === 'idle') {
-    console.log('fetchingStatus idle');
-    console.log(fetchingStatus);
-    return <div className="content loading"/>;
+  if (fetchingStatus === 'idle') {  
+    return <div className="loading"/>;
   }
 
   if (fetchingStatus === 'loading') {
-    console.log('fetchingStatus loading');
-    console.log(fetchingStatus);
-    return <div className="content loading"/>;
+    return <div className="loading"/>;
   }
 
   if (fetchingStatus === 'failed') {
-    console.log('fetchingStatus failed');
-    console.log(fetchingStatus);
     const errorMessage = error?.message || "Can't load data!";
-    return <div className="content error">Error | {errorMessage}</div>;
+    return <div className="error">Error | {errorMessage}</div>;
   }
 
   if (fetchingStatus === 'loaded') {    
-    console.log('fetchingStatus');
-    console.log(fetchingStatus);
     return renderList();
   }
 };

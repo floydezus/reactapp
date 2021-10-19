@@ -5,6 +5,7 @@ import routes from '../routes.js';
 
 const MyList = () => {
   const [users, setUsers] = useState( null);
+  const [usersImm, setUsersImm] = useState( null);
   const [fetchingStatus, setFetchingStatus] = useState('idle');
   const [error, setError] = useState(null);
   const [isAscending, setAscending] = useState(true);
@@ -16,6 +17,7 @@ const MyList = () => {
       .then((response) => {
         const { data } = response;
         setUsers(data);
+        setUsersImm(data);
         setFetchingStatus('loaded');
       })
       .catch((err) => {       
@@ -51,21 +53,17 @@ const MyList = () => {
     return date.formatMMDDYYYY();
   }
 
-  const searchByName = ({ target }) => {
-    console.log('valeuvt', target.value);
+  const searchByName = ({ target }) => {    
     setNameFilter(target.value);
     if (target.value === '') {
+      setUsers(usersImm);
       return;
     } else {
-        const filteredUsers = users.original.filter((user) => {
+        const filteredUsers = usersImm.filter((user) => {
         return user.firstName.toLowerCase().includes(target.value);
       })
-      setUsers({original: user.original, filtered:filteredUsers });
-    }    
-    // const filteredUsers = users.filter((user) => {
-    //   return user.firstName.toLowerCase().includes(target.value);
-    // })
-    // setUsers(filteredUsers);
+      setUsers(filteredUsers);
+    } 
   }
 
   const renderList = () => {    

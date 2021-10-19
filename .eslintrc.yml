@@ -12,7 +12,7 @@ env:
 parser: babel-eslint
 
 extends:
-  - 'airbnb-base'  
+  - 'airbnb-base'
 
 rules:
   no-console: 0

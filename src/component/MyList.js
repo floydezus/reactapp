@@ -7,14 +7,15 @@ const MyList = () => {
   const [users, setUsers] = useState( null);
   const [fetchingStatus, setFetchingStatus] = useState('idle');
   const [error, setError] = useState(null);
-  const [isAscending, setAscending] = useState(true);  
+  const [isAscending, setAscending] = useState(true);
+  const [nameFilter, setNameFilter] = useState('');
   
   useEffect(() => {    
     setFetchingStatus('loading');
     axios.get(routes.smallData())
       .then((response) => {
-        const { data } = response;        
-        setUsers(data);        
+        const { data } = response;
+        setUsers(data);
         setFetchingStatus('loaded');
       })
       .catch((err) => {       
@@ -34,7 +35,7 @@ const MyList = () => {
        newUsers.sort((a, b) => {
         const dateA = new Date(a.timestamp);
         const dateB = new Date(b.timestamp);
-        return isAscending ? dateA - dateB : dateB - dateA;        
+        return isAscending ? dateA - dateB : dateB - dateA;
       }),
     );
     setAscending(!isAscending);
@@ -50,10 +51,35 @@ const MyList = () => {
     return date.formatMMDDYYYY();
   }
 
+  const searchByName = ({ target }) => {
+    console.log('valeuvt', target.value);
+    setNameFilter(target.value);
+    if (target.value === '') {
+      return;
+    } else {
+        const filteredUsers = users.original.filter((user) => {
+        return user.firstName.toLowerCase().includes(target.value);
+      })
+      setUsers({original: user.original, filtered:filteredUsers });
+    }    
+    // const filteredUsers = users.filter((user) => {
+    //   return user.firstName.toLowerCase().includes(target.value);
+    // })
+    // setUsers(filteredUsers);
+  }
+
   const renderList = () => {    
     return (
       <div>        
-        <button className="button" onClick={sortByDate}>Sort by: {isAscending? 'Ascending' : 'Descending'}</button>        
+        <button className="button" onClick={sortByDate}>Sort by: {isAscending? 'Ascending' : 'Descending'}</button>
+        <label htmlFor="name">First Name:</label>
+            <input
+              type="text"
+              className="form-control"
+              onChange={searchByName}
+              value={nameFilter}
+              placeholder="Search people by name..."
+            /> 
         <div className="list">
         {users?.map(
           ({
@@ -90,7 +116,7 @@ const MyList = () => {
     return <div className="error">Error | {errorMessage}</div>;
   }
 
-  if (fetchingStatus === 'loaded') {    
+  if (fetchingStatus === 'loaded') {
     return renderList();
   }
 };

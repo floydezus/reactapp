@@ -103,3 +103,19 @@ a[href^="tel:"]:before {
   box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
 }
 
+.search {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+}
+
+.search-title {
+  font-size: 18px;
+}
+
+.search-control {
+  padding-left: 10px;
+  margin-left: 10px;
+  height: 40px;
+  width: max-content;
+}

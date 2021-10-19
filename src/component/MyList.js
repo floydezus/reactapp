@@ -60,24 +60,39 @@ const MyList = () => {
       return;
     } else {
         const filteredUsers = usersImm.filter((user) => {
-        return user.firstName.toLowerCase().includes(target.value);
+        return user.firstName.toLowerCase().includes(target.value.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(target.value.toLowerCase());
       })
       setUsers(filteredUsers);
     } 
   }
 
-  const renderList = () => {    
+  const scrollToLast = () => {
+    console.log('click');
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
+  };
+
+  const renderList = () => {
     return (
-      <div>        
+      <div>
         <button className="button" onClick={sortByDate}>Sort by: {isAscending? 'Ascending' : 'Descending'}</button>
-        <label htmlFor="name">First Name:</label>
-            <input
-              type="text"
-              className="form-control"
-              onChange={searchByName}
-              value={nameFilter}
-              placeholder="Search people by name..."
-            /> 
+        <button className="button"
+          onClick={scrollToLast}>
+          To End
+        </button>
+        <span className="search">
+          <label className="search-title" htmlFor="name">Search:</label>
+              <input
+                type="text"
+                className="search-control"
+                onChange={searchByName}
+                value={nameFilter}
+                placeholder="First name or last name"
+              />
+            </span>
         <div className="list">
         {users?.map(
           ({

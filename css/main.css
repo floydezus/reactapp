@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Arial", sans-serif;
+    color: #333;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .button {
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .button:hover {
+    background-color: #0b5ed7;
+  }
+  
+  .button:active {
+    background-color: #0a58ca;
+  }
+  
+  .button-group > * + * {
+    margin-left: 20px;
+  }
+  
+  .button-big {
+    min-width: 210px;
+  }
+  
+  .header-page {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .header-page-button-group {
+    margin-right: 20px;
+  }
+  
+  @media (max-width: 800px) {
+    .header-page {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .header-page-button-group {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .button-group {
+      text-align: center;
+    }
+  
+    .button-group > * + * {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
